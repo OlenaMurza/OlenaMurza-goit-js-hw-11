@@ -2,26 +2,27 @@ import './css/styles.css'
 import Notiflix from 'notiflix'
 import { fetchImages } from './js/fetch_images'
 import { renderGallery } from './js/render_gallery'
-import SimpleLightbox from "simplelightbox/dist/simple-lightbox.esm"
 import "simplelightbox/dist/simple-lightbox.min.css"
 import { onScroll, onToTopBtn } from './js/scroll'
 
-console.log(SimpleLightbox);
 
 const searchForm = document.querySelector('#search-form');
 const gallery = document.querySelector('.gallery');
 const loadMoreBtn = document.querySelector('.btn-load-more');
 let query = '';
 let page = 1;
-let simplelightbox;
+// let simplelightbox;
 const perPage = 40;
 
 searchForm.addEventListener('submit', onSearchForm)
 loadMoreBtn.addEventListener('click', onLoadMoreBtn)
 
+
 // onScroll()
 // onToTopBtn()
-
+let simplelightbox = class {
+  simpleLightbox = new SimpleLightBox('.gallery a').refresh()
+} 
 
 function onSearchForm(e) {
   e.preventDefault()
@@ -42,7 +43,7 @@ function onSearchForm(e) {
         alertNoImagesFound()
       } else {
         renderGallery(data.hits)
-        simpleLightBox = new SimpleLightbox('.gallery a').refresh()
+        // simpleLightbox = new SimpleLightBox('.gallery a').refresh()
         alertImagesFound(data)
 
         if (data.totalHits > perPage) {
@@ -51,17 +52,19 @@ function onSearchForm(e) {
       }
     })
     .catch(error => console.log(error))
+  
 }
 
 
 function onLoadMoreBtn() {
   page += 1
-  simpleLightBox.destroy()
+  simpleLightbox.destroy()
 
   fetchImages(query, page, perPage)
     .then(({ data }) => {
       renderGallery(data.hits)
-      simpleLightBox = new SimpleLightbox('.gallery a').refresh()
+      
+      simpleLightbox = new SimpleLightBox('.gallery a').refresh()
 
       const totalPages = Math.ceil(data.totalHits / perPage)
 
@@ -71,6 +74,7 @@ function onLoadMoreBtn() {
       }
     })
     .catch(error => console.log(error))
+  
 }
 
 

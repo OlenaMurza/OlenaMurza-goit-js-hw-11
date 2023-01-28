@@ -24,4 +24,5 @@ function renderGallery(images) {
     .join('')
 
   gallery.insertAdjacentHTML('beforeend', markup)
+  
 }

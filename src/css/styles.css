@@ -148,6 +148,7 @@ box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 1px rgb(0 0 0 / 14%), 0 2px 1px rg
   font: inherit;
   color: white;
   cursor: pointer;
+  
 }
 
 .btn-to-top {
@@ -175,7 +176,7 @@ box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 1px rgb(0 0 0 / 14%), 0 2px 1px rg
 }  
 
 .btn-load-more:hover
-/* .btn-to-top:hover  */
+ .btn-to-top:hover 
 {
   background-color: #2b3e88;
   transition: all 0.3s;
