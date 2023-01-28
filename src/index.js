@@ -2,9 +2,11 @@ import './css/styles.css'
 import Notiflix from 'notiflix'
 import { fetchImages } from './js/fetch_images'
 import { renderGallery } from './js/render_gallery'
-import SimpleLightbox from "simplelightbox"
+import SimpleLightbox from "simplelightbox/dist/simple-lightbox.esm"
 import "simplelightbox/dist/simple-lightbox.min.css"
 import { onScroll, onToTopBtn } from './js/scroll'
+
+console.log(SimpleLightbox);
 
 const searchForm = document.querySelector('#search-form');
 const gallery = document.querySelector('.gallery');
