@@ -20,10 +20,15 @@ loadMoreBtn.addEventListener('click', onLoadMoreBtn)
 
 // onScroll()
 // onToTopBtn()
-let simplelightbox = class {
-  simpleLightbox = new SimpleLightBox('.gallery a').refresh()
-} 
 
+
+const simpleLightBox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
+
+simpleLightBox.refresh()
+ 
 function onSearchForm(e) {
   e.preventDefault()
   window.scrollTo({ top: 0 })
@@ -43,7 +48,7 @@ function onSearchForm(e) {
         alertNoImagesFound()
       } else {
         renderGallery(data.hits)
-        // simpleLightbox = new SimpleLightBox('.gallery a').refresh()
+        // simpleLightBox = new SimpleLightBox('.gallery a').refresh()
         alertImagesFound(data)
 
         if (data.totalHits > perPage) {
@@ -58,12 +63,13 @@ function onSearchForm(e) {
 
 function onLoadMoreBtn() {
   page += 1
-  
+  simpleLightBox.destroy()
+
   fetchImages(query, page, perPage)
     .then(({ data }) => {
       renderGallery(data.hits)
       
-      // simpleLightbox = new SimpleLightBox('.gallery a').refresh()
+      simpleLightBox.refresh()
 
       const totalPages = Math.ceil(data.totalHits / perPage)
 

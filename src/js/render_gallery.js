@@ -1,3 +1,5 @@
+import simpleLightbox from "simplelightbox"
+
 export { renderGallery }
 
 const gallery = document.querySelector('.gallery')
@@ -24,5 +26,5 @@ function renderGallery(images) {
     .join('')
 
   gallery.insertAdjacentHTML('beforeend', markup)
-  
+ 
 }
