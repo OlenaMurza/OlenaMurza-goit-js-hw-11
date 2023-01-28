@@ -14,8 +14,8 @@ let page = 1;
 let simplelightbox;
 const perPage = 40;
 
-searchForm.addEventListener('submit', onSearchForm);
-loadMoreBtn.addEventListener('click', onLoadMoreBtn);
+searchForm.addEventListener('submit', onSearchForm)
+loadMoreBtn.addEventListener('click', onLoadMoreBtn)
 
 // onScroll()
 // onToTopBtn()
