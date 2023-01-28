@@ -58,13 +58,13 @@ function onSearchForm(e) {
 
 function onLoadMoreBtn() {
   page += 1
-  simpleLightbox.destroy()
+  // simpleLightbox.destroy()
 
   fetchImages(query, page, perPage)
     .then(({ data }) => {
       renderGallery(data.hits)
       
-      simpleLightbox = new SimpleLightBox('.gallery a').refresh()
+      // simpleLightbox = new SimpleLightBox('.gallery a').refresh()
 
       const totalPages = Math.ceil(data.totalHits / perPage)
 
