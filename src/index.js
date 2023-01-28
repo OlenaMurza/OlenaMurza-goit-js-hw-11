@@ -58,8 +58,7 @@ function onSearchForm(e) {
 
 function onLoadMoreBtn() {
   page += 1
-  // simpleLightbox.destroy()
-
+  
   fetchImages(query, page, perPage)
     .then(({ data }) => {
       renderGallery(data.hits)
