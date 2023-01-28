@@ -2,7 +2,6 @@ import './css/styles.css'
 import Notiflix from 'notiflix'
 import { fetchImages } from './js/fetch_images'
 import { renderGallery } from './js/render_gallery'
-import SimpleLightBox from 'simpleLightbox'
 import "simplelightbox/dist/simple-lightbox.min.css"
 import { onScroll, onToTopBtn } from './js/scroll'
 
