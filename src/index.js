@@ -5,7 +5,6 @@ import { renderGallery } from './js/render_gallery'
 import SimpleLightbox from "simplelightbox"
 import "simplelightbox/dist/simple-lightbox.min.css"
 import { onScroll, onToTopBtn } from './js/scroll'
-// import render from './js/render_gallery'
 
 
 const searchForm = document.querySelector('#search-form');
@@ -58,12 +57,13 @@ function onSearchForm(e) {
 
 function onLoadMoreBtn() {
   page += 1
-  // simpleLightBox.destroy()
+  simpleLightBox.destroy()
 
   fetchImages(query, page, perPage)
+    console.log(fetchImages)
     .then(({ data }) => {
       renderGallery(data.hits)
-      console.log(data.hits)
+     
       simpleLightBox.refresh()
 
       const totalPages = Math.ceil(data.totalHits / perPage)
@@ -72,6 +72,7 @@ function onLoadMoreBtn() {
         loadMoreBtn.classList.add('is-hidden')
         alertEndOfSearch()
       }
+      
     })
     .catch(error => console.log(error))
  }
