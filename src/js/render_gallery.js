@@ -1,3 +1,5 @@
+
+
 export { renderGallery }
 
 const gallery = document.querySelector('.gallery')

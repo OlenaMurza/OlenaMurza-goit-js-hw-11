@@ -2,6 +2,7 @@ import './css/styles.css'
 import Notiflix from 'notiflix'
 import { fetchImages, fetchImages } from './js/fetch_images'
 import { renderGallery } from './js/render_gallery'
+import simpleLightBox from './js/render_gallery'
 import SimpleLightbox from "simplelightbox"
 import "simplelightbox/dist/simple-lightbox.min.css"
 import { onScroll, onToTopBtn } from './js/scroll'
@@ -9,7 +10,7 @@ import { onScroll, onToTopBtn } from './js/scroll'
 
 const searchForm = document.querySelector('#search-form');
 const gallery = document.querySelector('.gallery');
-const loadMoreBtn = document.querySelector('.btn-load-more');
+let loadMoreBtn = document.querySelector('.btn-load-more');
 let query = '';
 let page = 1;
 // let simplelightbox;
@@ -21,7 +22,6 @@ loadMoreBtn.addEventListener('click', onLoadMoreBtn)
 // onScroll()
 // onToTopBtn()
 
- 
 function onSearchForm(e) {
   e.preventDefault()
   window.scrollTo({ top: 0 })
@@ -42,34 +42,33 @@ function onSearchForm(e) {
         alertNoImagesFound()
       } else {
         renderGallery(data.hits)
-        // simpleLightBox = new SimpleLightBox('.gallery a').refresh()
+        
         alertImagesFound(data)
 
         if (data.totalHits > perPage) {
           loadMoreBtn.classList.remove('is-hidden')
         }
-      }
+       }
     })
     .catch(error => console.log(error))
   
 }
 
-
 function onLoadMoreBtn() {
   page += 1
-  simpleLightBox.destroy()
+  // simpleLightBox.destroy()
 
   fetchImages(query, page, perPage)
-    console.log(fetchImages)
+   
     .then(({ data }) => {
       renderGallery(data.hits)
      
-      simpleLightBox.refresh()
+      // simpleLightBox.refresh()
 
       const totalPages = Math.ceil(data.totalHits / perPage)
 
-      if (page > totalPages) {
-        loadMoreBtn.classList.add('is-hidden')
+      if (page === totalPages) {
+          loadMoreBtn.classList.remove('is-hidden')
         alertEndOfSearch()
       }
       
@@ -92,4 +91,5 @@ function alertNoImagesFound() {
 
 function alertEndOfSearch() {
   Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
+  
 }
