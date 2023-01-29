@@ -13,7 +13,7 @@ const gallery = document.querySelector('.gallery');
 let loadMoreBtn = document.querySelector('.btn-load-more');
 let query = '';
 let page = 1;
-// let simplelightbox;
+
 const perPage = 40;
 
 searchForm.addEventListener('submit', onSearchForm)
@@ -65,8 +65,6 @@ function onLoadMoreBtn() {
     .then(({ data }) => {
       renderGallery(data.hits)
      
-      // simpleLightBox.refresh()
-
       const totalPages = Math.ceil(data.totalHits / perPage)
 
       if (page === totalPages) {
