@@ -39,6 +39,7 @@ function onSearchForm(e) {
     .then(({ data }) => {
       
       if (data.totalHits === 0) {
+        
         alertNoImagesFound()
       } else {
         renderGallery(data.hits)
@@ -48,6 +49,7 @@ function onSearchForm(e) {
         if (data.totalHits > perPage) {
           loadMoreBtn.classList.remove('is-hidden')
         }
+        
        }
     })
     .catch(error => console.log(error))
@@ -68,7 +70,7 @@ function onLoadMoreBtn() {
       const totalPages = Math.ceil(data.totalHits / perPage)
 
       if (page === totalPages) {
-          loadMoreBtn.classList.remove('is-hidden')
+        loadMoreBtn.remove()
         alertEndOfSearch()
       }
       
