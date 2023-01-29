@@ -2,7 +2,8 @@ import './css/styles.css'
 import Notiflix from 'notiflix'
 import { fetchImages } from './js/fetch_images'
 import { renderGallery } from './js/render_gallery'
-import "simplelightbox/dist/simple-lightbox.min.css"
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
 import { onScroll, onToTopBtn } from './js/scroll'
 
 
@@ -22,10 +23,10 @@ loadMoreBtn.addEventListener('click', onLoadMoreBtn)
 // onToTopBtn()
 
 
-const simpleLightBox = new SimpleLightbox('.gallery a', {
-  captionsData: 'alt',
-  captionDelay: 250,
-});
+// const simpleLightBox = new SimpleLightbox('.gallery a', {
+//   captionsData: 'alt',
+//   captionDelay: 250,
+// });
 
 simpleLightBox.refresh()
  
@@ -69,7 +70,7 @@ function onLoadMoreBtn() {
     .then(({ data }) => {
       renderGallery(data.hits)
       
-      simpleLightBox.refresh()
+      // simpleLightBox.refresh()
 
       const totalPages = Math.ceil(data.totalHits / perPage)
 
