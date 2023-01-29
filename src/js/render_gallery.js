@@ -24,5 +24,12 @@ function renderGallery(images) {
     .join('')
 
   gallery.insertAdjacentHTML('beforeend', markup)
+  
+const simpleLightBox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
+
+simpleLightBox.refresh()
  
 }

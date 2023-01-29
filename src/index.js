@@ -1,6 +1,6 @@
 import './css/styles.css'
 import Notiflix from 'notiflix'
-import { fetchImages } from './js/fetch_images'
+import { fetchImages, fetchImages } from './js/fetch_images'
 import { renderGallery } from './js/render_gallery'
 import SimpleLightbox from "simplelightbox"
 import "simplelightbox/dist/simple-lightbox.min.css"
@@ -19,17 +19,9 @@ const perPage = 40;
 searchForm.addEventListener('submit', onSearchForm)
 loadMoreBtn.addEventListener('click', onLoadMoreBtn)
 
-
 // onScroll()
 // onToTopBtn()
 
-
-const simpleLightBox = new SimpleLightbox('.gallery a', {
-  captionsData: 'alt',
-  captionDelay: 250,
-});
-
-simpleLightBox.refresh()
  
 function onSearchForm(e) {
   e.preventDefault()
@@ -46,6 +38,7 @@ function onSearchForm(e) {
 
   fetchImages(query, page, perPage)
     .then(({ data }) => {
+      
       if (data.totalHits === 0) {
         alertNoImagesFound()
       } else {
@@ -81,8 +74,7 @@ function onLoadMoreBtn() {
       }
     })
     .catch(error => console.log(error))
-  
-}
+ }
 
 
 function alertImagesFound(data) {
